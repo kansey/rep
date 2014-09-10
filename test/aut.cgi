@@ -20,7 +20,7 @@ my $pas=param("password");
 my @saltair = ('A', 'f');
 my $salt = $saltair[0] . $saltair[1];;
 my $crypted_password = crypt($pas, $salt);
-=f
+
 my $cookie=new CGI::Cookie(
       -name => 'pas',
       -value => $crypted_password,
@@ -28,8 +28,7 @@ my $cookie=new CGI::Cookie(
       -path => '/cgi-bin/test/',
       -domain => '.localhost'     
         );
-=cut        
-
+  
   sub authentication {
   	my $sql = SQL::Abstract->new;
     my ($stmt,@bind) = $sql->select('users', [qw/id_user/],[{login=>$log,pass=>$pas,cookie=>$crypted_password}]);
@@ -55,21 +54,12 @@ print $q->header(
      );
 
 if (my $authentication=authentication()== 0) {
-  	
-    #print  $q->redirect('http://localhost/test_html/reg.html');
-     #print q~ <a href="http://localhost/test_html/reg.html">зарегестрируйся</a>~;
-     print qq~<html><head><title>Подождите...</title>~;
-     print qq~<meta http-equiv="refresh" content="2;url=http://localhost/test_html/reg.html">~;
+	print qq~<html><head><title>Подождите...</title>~;
+    print qq~<meta http-equiv="refresh" content="2;url=http://localhost/test_html/reg.html">~;
 }  else {
-	
-  #print  $q->redirect('http://localhost/cgi-bin/test/template.cgi');
-  # print q~ <a href="http://localhost/cgi-bin/test/template.cgi">пройди тест</a>~;
-  print qq~<html><head><title>Подождите...</title>~;
-  print qq~<meta http-equiv="refresh" content="2;url=http://localhost/cgi-bin/test/template.cgi">~;
+	print qq~<html><head><title>Подождите...</title>~;
+    print qq~<meta http-equiv="refresh" content="2;url=http://localhost/cgi-bin/test/template.cgi">~;
 }   
-
-#print header(-type => "text/html", -charset=>'utf8', -cookie=>$cookie );
-
 
 $dbh->disconnect();
 
