@@ -1,0 +1,35 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ <title>Регистрация для прохождения теста</title>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+</head>
+<style>
+p {
+	font-family: 'Ubuntu Medium'; /* Шрифт с засечками */
+  }
+  a{
+    font-family: 'Ubuntu Medium'; /* Шрифт с засечками */
+    font-size:80%;
+    }  
+body{
+	background: #5F9EA0; /* Цвет фона */
+    }
+  </style>
+<body>
+<form action="http://localhost/cgi-bin/test/aut.cgi">
+<center>
+   <fieldset style="width: 15%">
+   <legend>Аутентификация</legend>
+   <p><label>Логин<br></label><input type="text" name="login" placeholder="Логин"required><span></span></p>
+   <p><label>Пароль<br></label><input type="password" name="password"
+   placeholder="Пароль" required><span></span></p>
+    </fieldset>
+<div class="footer">
+<input type="submit" value="Ок" class="but"><a href="http://localhost/test_html/reg.html">зарегистрироваться</a>
+</center>
+</div>
+</form>
+</body>
+</html>
+

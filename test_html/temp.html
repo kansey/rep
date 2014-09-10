@@ -1,0 +1,35 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+</head>
+<style>
+p {
+	font-family: 'Ubuntu Medium'; /* Шрифт с засечками */
+  }
+body{
+	background: #5F9EA0; /* Цвет фона */
+    }
+  </style>
+<body>
+<FORM action ="http://localhost/cgi-bin/test/report.cgi"method ="POST" enctype="multipart/form-data" > 
+
+ [% FOREACH hash IN id_quest_answer %]
+ 
+   <h3>Вопрос №[%hash.id_quest%]</h3>
+ 
+<p>[% hash.quest  %]</p>
+
+ [% FOREACH arr_answer IN hash.answers %]
+ <p><input name="[% hash.id_quest %]" type="radio" value= "[%arr_answer.answer%]">
+ [%arr_answer. answer%]</p>
+   [% END %]
+[% END %]
+
+<input name="submit" type="submit" value="Результат">
+<input name="reset" type="reset" value="Очистить">
+
+
+</body>
+</html>
+
