@@ -11,7 +11,7 @@ use Data::Dumper;
 use utf8;
 use Encode;
 use lib qw( /usr/local/lib/perl5/site_perl/5.20.0/x86_64-linux     );
-use Class::Date qw(:errors date localdate gmdate now -DateParse -EnvC);
+#use Class::Date qw(:errors date localdate gmdate now -DateParse -EnvC);
 
  #это спасает от кракозябры в брауезе!
 
