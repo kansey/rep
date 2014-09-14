@@ -21,13 +21,7 @@ my @saltair = ('A', 'f');
 my $salt = $saltair[0] . $saltair[1];;
 my $crypted_password = crypt($pas, $salt);
 
-my $cookie=new CGI::Cookie(
-      -name => 'pas',
-      -value => $crypted_password,
-      -expires => '+1d',
-      -path => '/cgi-bin/test/',
-      -domain => '.localhost'     
-        );
+
   
   sub authentication {
     my $sql = SQL::Abstract->new;
