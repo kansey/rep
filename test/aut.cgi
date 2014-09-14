@@ -30,7 +30,7 @@ my $cookie=new CGI::Cookie(
         );
   
   sub authentication {
-  	my $sql = SQL::Abstract->new;
+    my $sql = SQL::Abstract->new;
     my ($stmt,@bind) = $sql->select('users', [qw/id_user/],[{login=>$log,pass=>$pas,cookie=>$crypted_password}]);
     my $sth = $dbh->prepare($stmt);
     $sth->execute(@bind);
@@ -54,10 +54,10 @@ print $q->header(
      );
 
 if (my $authentication=authentication()== 0) {
-	print qq~<html><head><title>Подождите...</title>~;
+    print qq~<html><head><title>Подождите...</title>~;
     print qq~<meta http-equiv="refresh" content="2;url=http://localhost/test_html/reg.html">~;
 }  else {
-	print qq~<html><head><title>Подождите...</title>~;
+    print qq~<html><head><title>Подождите...</title>~;
     print qq~<meta http-equiv="refresh" content="2;url=http://localhost/cgi-bin/test/template.cgi">~;
 }   
 
