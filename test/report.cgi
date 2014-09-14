@@ -73,7 +73,7 @@ sub convert_str {
 	my $str= shift;
 	$str=~s/\s//g;
 	my @count=  split '', $str;
-    my $count= @count;  
+        my $count= @count;  
 }
 
 my @res = map {
@@ -90,7 +90,7 @@ my @res = map {
 } 0..@true_answer; 
 
 sub get_id_answer {
-	my $sql = SQL::Abstract->new;
+    my $sql = SQL::Abstract->new;
     my ($stmt,@bind) = $sql->select('answers', [qw/id_answer/],[{flag=>1}]);
     my $sth = $dbh->prepare($stmt);
     $sth->execute(@bind);
@@ -124,7 +124,7 @@ my $count_answer=@res;
 my $count_quest=@answer;
 
 my $tt2 = Template->new({
-	INCLUDE_PATH => '/var/www/test_html',
+    INCLUDE_PATH => '/var/www/test_html',
     DEFAULT_ENCODING => 'utf8',
     ENCODING => 'utf8',
 }) || die "$tt2::ERROR\n";
