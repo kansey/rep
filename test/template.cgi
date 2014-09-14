@@ -24,8 +24,8 @@ $dbh->do("SET NAMES utf8");
 
 
 sub get_id_quest {
-	my $sql = SQL::Abstract->new;
-	my $stmt= $sql->select('questions',[qw/id_quest quest/]);
+    my $sql = SQL::Abstract->new;
+    my $stmt= $sql->select('questions',[qw/id_quest quest/]);
     my $ary_ref  = $dbh->selectall_arrayref($stmt, { Slice => {} });
     return $ary_ref;
     }
@@ -33,8 +33,8 @@ sub get_id_quest {
 my $ref_questions= get_id_quest;
 
 sub get_answers {
-	my $id_quest=shift;
-	my $sql = SQL::Abstract->new;
+    my $id_quest=shift;
+    my $sql = SQL::Abstract->new;
     my ($stmt,@bind) = $sql->select('answers', [qw/id_quest,answer/],[{id_quest=>$id_quest}]);
     my $ary_ref  = $dbh->selectall_arrayref($stmt,{ Slice => {} },@bind);
     return $ary_ref;
@@ -43,7 +43,7 @@ sub get_answers {
 $_->{answers} = get_answers($_->{id_quest}) for @$ref_questions;
 
 my $tt2 = Template->new({
-	INCLUDE_PATH => '/var/www/test_html',
+    INCLUDE_PATH => '/var/www/test_html',
     DEFAULT_ENCODING => 'utf8',
     ENCODING => 'utf8',
 }) || die "$tt2::ERROR\n";
