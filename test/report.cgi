@@ -37,7 +37,7 @@ my $date=$now->string ;
 no lib qw( /usr/local/lib/perl5/site_perl/5.20.0/x86_64-linux );
 
 sub get_id_user {
-	my $sql = SQL::Abstract->new;
+    my $sql = SQL::Abstract->new;
     my ($stmt,@bind) = $sql->select('users', [qw/id_user/],[{cookie=>$cookie }]);
     my $sth = $dbh->prepare($stmt);
     $sth->execute(@bind);
@@ -48,7 +48,7 @@ sub get_id_user {
 my $id= get_id_user;
 
 sub get_user_answers {
-	my $query = CGI->new;
+    my $query = CGI->new;
     my @names = $query->param;
     my @arr=map{param($_);}@names;
     my $last=pop (@arr);
@@ -57,7 +57,7 @@ sub get_user_answers {
 my @answer=get_user_answers;
 
 sub get_true_answer {
-	my $sql = SQL::Abstract->new;
+    my $sql = SQL::Abstract->new;
     my ($stmt,@bind) = $sql->select('answers', [qw/answer/],[{flag=>1}]);
     my $sth = $dbh->prepare($stmt);
     $sth->execute(@bind);
@@ -108,13 +108,12 @@ my @id_answer= get_id_answer;
 	my $sql=SQL::Abstract->new;
 	my ($stmt,@bind)=$sql->insert('user_answers',
 		{
-			id_user=> $id, 
-			quest=>$ind+1,
+		    id_user=> $id, 
+		    quest=>$ind+1,
 		    answer=>$id_answer[$ind],
 		    user_answer=>$answer[$ind],
 		    date=>$date
-
-	    }
+                }
 	);  
     my $sth=$dbh->prepare($stmt);
     $sth->execute(@bind) or die $sth->errstr;
