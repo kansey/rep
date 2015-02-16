@@ -39,6 +39,7 @@ sub get_id_user {
     return  $id;
 }   
 my $id= get_id_user;
+
 sub get_user_answers {
     my $query = CGI->new;
     my @names = $query->param;
@@ -47,6 +48,7 @@ sub get_user_answers {
 	return @arr;
 }
 my @answer=get_user_answers;
+
 sub get_true_answer {
     my $sql = SQL::Abstract->new;
     my ($stmt,@bind) = $sql->select('answers', [qw/answer/],[{flag=>1}]);
@@ -59,6 +61,7 @@ sub get_true_answer {
  	return @answer;
 }
 my @true_answer= get_true_answer(); 
+
 sub convert_str {
 	my $str= shift;
 	$str=~s/\s//g;
@@ -77,6 +80,7 @@ my @res = map {
     	}
     } 
 } 0..@true_answer; 
+
 sub get_id_answer {
     my $sql = SQL::Abstract->new;
     my ($stmt,@bind) = $sql->select('answers', [qw/id_answer/],[{flag=>1}]);
