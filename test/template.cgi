@@ -8,20 +8,12 @@ use DBI;
 use SQL::Abstract;
 use Template;
 use Data::Dumper;
-use encoding 'utf8'; #это спасает от кракозябры в брауезе!
-
-
+use encoding 'utf8'; 
 print header(-type => "text/html", -charset=>'utf8');
-#print "Content-type: text/html;charset=utf8\n\n";
 
 my $dbh = DBI->connect('DBI:mysql:test_1:localhost','root','123456')
-    or  die "Error! Can not connect:". $DBI::errstr;
+              or  die "Error! Can not connect:". $DBI::errstr;
 $dbh->do("SET NAMES utf8");
-
-#my $cookie = cookie('pas') or die "Invalid cookie!";
-#print $cookie;
-
-
 
 sub get_id_quest {
     my $sql = SQL::Abstract->new;
@@ -39,19 +31,13 @@ sub get_answers {
     my $ary_ref  = $dbh->selectall_arrayref($stmt,{ Slice => {} },@bind);
     return $ary_ref;
     }
-
 $_->{answers} = get_answers($_->{id_quest}) for @$ref_questions;
-
 my $tt2 = Template->new({
     INCLUDE_PATH => '/var/www/test_html',
     DEFAULT_ENCODING => 'utf8',
-    ENCODING => 'utf8',
-}) || die "$tt2::ERROR\n";
+    ENCODING => 'utf8',}
+    )|| die "$tt2::ERROR\n";
 
-my $var={
-	id_quest_answer =>$ref_questions
-};
-
+my $var={id_quest_answer =>$ref_questions};
 $tt2->process('temp.html', $var) || die $tt2->error(), "\n";
-
 $dbh->disconnect();
